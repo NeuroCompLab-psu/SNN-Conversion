@@ -14,7 +14,8 @@ This codebase provides a binary ANN to SNN conversion scheme utilizing [BindsNet
 ## Training from scratch
 Using the network structure in ```vgg.py``` under this repository, one can reproduce the same or similar accuracy. 
 ### Preparing Full Precision Model on CIFAR-100
-| Model | Batch size | Epoch | Learning Rate | Weight Decay | Optimizer |
+| Model | Batch Size | Epoch | Learning Rate | Weight Decay | Optimizer |
+| ---- | ---- | ---- | ---- | ---- | ---- |
 | CIFAR-100 Full Precision | 256 | 200 |  5e-2, divide by 10 at 81 and 122 epoch | 1e-4 | SGD (momentum=0.9) |
 | CIFAR-100 Binary | 256 | 200 | 5e-4, halved every 30 epochs | 1e-4 (0 after 30 epochs) | Adam |
 | ImageNet Full Precision| 128 | 100 |  1e-2, divide by 10 every 30 epochs | 1e-4 | SGD (momentum=0.9) |
