@@ -1,13 +1,7 @@
-# ANN to SNN conversion using BindsNet
+# Exploring the Connection Between Binary and Spiking Networks
 
-## Conversion
-This code modifies on top of the [mini-batch processing code](https://github.com/BINDS-LAB-UMASS/snn-minibatch/tree/master/minibatch/conversion) as described in the paper [Minibatch Processing in Spiking Neural Networks](https://arxiv.org/abs/1909.02549). Our work use this framework to optimize the latency aspect of ANN-SNN conversion process.
-
-Moreover, we provide the following features for better analysis:
-* Adaptation to CIFAR-100 and ImageNet dataset
-* VGG15 model structure as described in our paper
-* Accuracy vs timesteps plot over time
-
+## Overview
+This codebase provides a binary ANN to SNN conversion scheme utilizing [BindsNet](https://github.com/BindsNET/bindsnet) and an optimization proposal for large-scale datasets， CIFAR-100 and ImageNet. Following the proposed procedures and design mentioned in the paper, the BSNN achieved near-full precision accuracy which is significantly better than the [XNOR-Net](https://github.com/allenai/XNOR-Net) even with many SNN-specific constraints.
 
 ## Requirements
 
@@ -15,22 +9,33 @@ Moreover, we provide the following features for better analysis:
 - the matplotlib, numpy, tqdm, torchvision, and the forked [BindsNet](https://github.com/BindsNET/bindsnet)
 - a PyTorch install version 1.3.0 ([pytorch.org](http://pytorch.org))
 - CUDA 10.1
-- The ImageNet dataset (which can be automatically downloaded by recent version of [torchvision](https://pytorch.org/docs/stable/torchvision/datasets.html#imagenet)) (If needed)
+- The ImageNet dataset (which can be automatically downloaded by a recent version of [torchvision](https://pytorch.org/docs/stable/torchvision/datasets.html#imagenet)) (If needed)
 
-## Pre-trained models
-We provide pre-trained model of the VGG-15 architecture mentioned in the paper as well as the binarized version of it, available for download.
-* [CIFAR-100 Full Precision ANN](https://dl.fbaipublicfiles.com/deepcluster/alexnet/checkpoint.pth.tar)
-* [CIFAR-100 Binary ANN](https://dl.fbaipublicfiles.com/deepcluster/alexnet/checkpoint.pth.tar)
-* [ImageNet Full Precision ANN](https://dl.fbaipublicfiles.com/deepcluster/alexnet/checkpoint.pth.tar)
-* [ImageNet Binary ANN](https://dl.fbaipublicfiles.com/deepcluster/alexnet/checkpoint.pth.tar)
+## Training from scratch
+Using the network structure in ```vgg.py``` under this repository, one can reproduce the same or similar accuracy. 
+### Preparing Full Precision Model on CIFAR-100
+| Model | Batch size | Epoch | Learning Rate | Weight Decay | Optimizer |
+| CIFAR-100 Full Precision | 256 | 200 |  5e-2, divide by 10 at 81 and 122 epoch | 1e-4 | SGD (momentum=0.9) |
+| CIFAR-100 Binary | 256 | 200 | 5e-4, halved every 30 epochs | 1e-4 (0 after 30 epochs) | Adam |
+| ImageNet Full Precision| 128 | 100 |  1e-2, divide by 10 every 30 epochs | 1e-4 | SGD (momentum=0.9) |
+| ImageNet Binary | 128 | 100 |  5e-4, halved every 30 epochs | 5e-4 (0 after 30 epochs) | Adam(**beta=(0.0,0.999)**) |
 
-The Full Precision ANNs are trained using standard [PyTorch training scripts](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html) where as the binarization process was done with [XNOR-Net-Pytorch](https://github.com/jiecaoyu/XNOR-Net-PyTorch) which is the python implementation of the [XNOR-Net](https://github.com/allenai/XNOR-Net).
+Note that these hyper-parameters may be further optimized.
 
+## Evaluating Pre-trained models
+We provide pre-trained models of the VGG architecture mentioned in the paper and described above, available for download. Note that the first and the last layer are not binarized for our binarized models. The corresponding op-1 accuracies are indicated in parentheses.
 
+* [CIFAR-100 Full Precision ANN (64.9%)](https://dl.fbaipublicfiles.com/deepcluster/alexnet/checkpoint.pth.tar)
+* [CIFAR-100 Binary ANN(64.8%)](https://dl.fbaipublicfiles.com/deepcluster/alexnet/checkpoint.pth.tar)
+* [ImageNet Full Precision ANN(69.05%)](https://dl.fbaipublicfiles.com/deepcluster/alexnet/checkpoint.pth.tar)
+* [ImageNet Binary ANN(64.4%)](https://dl.fbaipublicfiles.com/deepcluster/alexnet/checkpoint.pth.tar)
+
+The Full Precision ANNs are trained using standard [PyTorch training practices](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html) and the binarization process utilizes part of the [XNOR-Net-Pytorch](https://github.com/jiecaoyu/XNOR-Net-PyTorch) script which is the python implementation of the original [XNOR-Net](https://github.com/allenai/XNOR-Net).
 
 ## Running a simulation
 
-Copy the pre-trained model to the same directory, and run the following code
+Prepare the pre-trained model and move to the same directory, and run the following code for each model:
+
 
 
 Full documentation of the unsupervised training code `conversion.py`:
@@ -44,7 +49,7 @@ usage: conversion.py [-h] --job-dir JOB_DIR --model MODEL
 
 required arguments:
   --job-dir JOB_DIR     The working directory to store results
-  --model MODEL         The path to the pretrained model
+  --model MODEL         The path to the pre-trained model
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -59,7 +64,7 @@ optional arguments:
                         Number of data loaders
   --norm NORM           The amount of data to be normalized at once
   --gpu                 Whether to use GPU or not
-  --one-step            Single step inference flag
+  --one-step            Single-step inference flag
   --data DATA_PATH      The path to ImageNet data (default: './data/)',
                         CIFAR-100 will be downloaded
   --arch ARCH           ANN architecture to be instantiated
@@ -67,7 +72,7 @@ optional arguments:
                         The percentile of activation in the training set to be
                         used for normalization of SNN voltage threshold
   --eval_size EVAL_SIZE
-                        The amount of samples to be evaluated
+                        The number of samples to be evaluated
   --dataset DATASET     cifar100 or imagenet
 ```
 
