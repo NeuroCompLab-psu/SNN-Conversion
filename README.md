@@ -1,13 +1,13 @@
 # Exploring the Connection Between Binary and Spiking Networks
 
 ## Overview
-This codebase provides a binary ANN to SNN conversion scheme utilizing [BindsNet](https://github.com/BindsNET/bindsnet) and an optimization proposal for large-scale datasets， CIFAR-100 and ImageNet. Following the proposed procedures and design mentioned in the paper, the BSNN achieved near-full precision accuracy which is significantly better than the [XNOR-Net](https://github.com/allenai/XNOR-Net) even with many SNN-specific constraints.
+This codebase provides a binary ANN to SNN conversion scheme utilizing [BindsNet](https://github.com/BindsNET/bindsnet) and a novel set of optimization proposal for large-scale datasets, namely CIFAR-100 and ImageNet. Following the proposed procedures and design features mentioned in [our work](https://ismyinternetworking.com/), the BSNN achieved near-full precision accuracy which is significantly better than the [XNOR-Net](https://github.com/allenai/XNOR-Net) even with many SNN-specific constraints. The optimization techniques also apply to the full precision ANN to SNN conversion.
 
 ## Requirements
 
-- a Python installation version 3.6 or above
-- the matplotlib, numpy, tqdm, torchvision, and the forked [BindsNet](https://github.com/BindsNET/bindsnet)
-- a PyTorch install version 1.3.0 ([pytorch.org](http://pytorch.org))
+- A Python installation version 3.6 or above
+- The matplotlib, numpy, tqdm, torchvision, and the forked [BindsNet](https://github.com/BindsNET/bindsnet)
+- A PyTorch install version 1.3.0 ([pytorch.org](http://pytorch.org))
 - CUDA 10.1
 - The ImageNet dataset (which can be automatically downloaded by a recent version of [torchvision](https://pytorch.org/docs/stable/torchvision/datasets.html#imagenet)) (If needed)
 
