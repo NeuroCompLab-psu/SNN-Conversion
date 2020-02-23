@@ -20,6 +20,7 @@ The optimization techniques also apply to the full precision ANN to SNN conversi
 - The ImageNet dataset (which can be automatically downloaded by a recent version of [torchvision](https://pytorch.org/docs/stable/torchvision/datasets.html#imagenet)) (If needed)
 
 ## Training from scratch
+Our model structure explore various SNN conversion constraints that a available under vgg.py
 Using the network structure in ```vgg.py``` under this repository, one can reproduce the same or similar accuracy. 
 ### Preparing Full Precision Model on CIFAR-100
 | Model | Batch Size | Epoch | Learning Rate | Weight Decay | Optimizer |
