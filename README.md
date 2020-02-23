@@ -1,7 +1,15 @@
-# Exploring the Connection Between Binary and Spiking Networks
+# Exploring the Connection Between Binary and Spiking Neural Networks
 
 ## Overview
-This codebase provides a binary ANN to SNN conversion scheme utilizing [BindsNet](https://github.com/BindsNET/bindsnet) and a novel set of optimization proposal for large-scale datasets, namely CIFAR-100 and ImageNet. Following the proposed procedures and design features mentioned in [our work](https://ismyinternetworking.com/), the BSNN achieved near-full precision accuracy which is significantly better than the [XNOR-Net](https://github.com/allenai/XNOR-Net) even with many SNN-specific constraints. The optimization techniques also apply to the full precision ANN to SNN conversion.
+
+outlines the training methodology adn traind model for FP and binary sNN(bsnn) utilizing [BindsNet](https://github.com/BindsNET/bindsnet) for large-scale datasets, namely CIFAR-100 and ImageNet
+we showed that bsnn exhibits near FP
+We show that trainingSpiking Neural Networks in the binary regime results in near full precision accuracies.
+we use ann to snn conver technique to convert our models and 
+
+This codebase provides a binary ANN to SNN conversion scheme utilizing [BindsNet](https://github.com/BindsNET/bindsnet) and a novel set of optimization proposal for large-scale datasets, namely CIFAR-100 and ImageNet. Following the proposed procedures and design features mentioned in [our work](https://ismyinternetworking.com/), the BSNN achieved near full-precision accuracy which is significantly better than the [XNOR-Net](https://github.com/allenai/XNOR-Net) even with many SNN-specific constraints. 
+
+The optimization techniques also apply to the full precision ANN to SNN conversion.
 
 ## Requirements
 
