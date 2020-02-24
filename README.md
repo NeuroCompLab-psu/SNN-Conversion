@@ -46,7 +46,7 @@ The Full Precision ANNs are trained using standard [PyTorch training practices](
 
 Prepare the pre-trained model and move to the same directory, and run the following code for each model:
 
-```python main.py --job-dir test --results-file res.txt --gpu --batch-size 100 --time 170 --dataset imagenet --data D:/imagenet_data --percentile 99.9 --norm 3500 --arch vgg15ab --model ab_imgnet_bin.pth.tar```
+```python main.py --job-dir cifar100_test --gpu --dataset cifar100 --data . --percentile 99.9 --norm 3500 --arch vgg15ab --model bin_cifar100.pth.tar```
 
 Full documentation of the arguments in `conversion.py`:
 ```
@@ -84,6 +84,7 @@ optional arguments:
                         evaluate all)
   --dataset DATASET     cifar100 or imagenet
 ```
+Depending on your computing resources, some settings can be changed to speed up or to accommodate available device. ```--norm```,```--batch-size```, and ```--time``` can be changed for better performance, or tuned down to fit in GPU with smaller memory.
 
 ## Reference
 

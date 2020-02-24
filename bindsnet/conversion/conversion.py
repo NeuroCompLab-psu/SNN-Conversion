@@ -602,16 +602,6 @@ def data_based_normalization(
             if isinstance(module, nn.ReLU):
                 if prev_module is not None:
                     activities = activations.cpu()
-
-                    # percs = list(range(100))
-                    # intervals = [x* 5e-2 for x in range(0, 1000, 5)]
-                    # all_activities = []
-                    # # for perc in percs:
-                    # #     intervals.append(np.percentile(activities, perc))
-                    # for i in range(len(intervals)-1):
-                    #     all_activities.append(get_count(intervals[i], intervals[i+1], activities))
-                    # print(intervals)
-                    # print(all_activities)
                     scale_factor = np.percentile(activities, percentile)
 
                     prev_module.weight *= prev_factor / scale_factor
@@ -621,7 +611,6 @@ def data_based_normalization(
 
             elif isinstance(module, nn.Linear) or isinstance(module, nn.Conv2d):
                 prev_module = module
-    print(scale)
     return ann
 
 
