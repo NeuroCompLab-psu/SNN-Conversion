@@ -336,8 +336,6 @@ class Network(torch.nn.Module):
             inpts.update(self._get_inputs())
 
         # Simulate network activity for `time` timesteps.count the frequency in tensor pytorch
-        # spikes_accuracy = torch.zeros(self.layers['21'].s.shape, dtype=torch.int)
-        # import matplotlib.pyplot as plt
 
         for t in range(timesteps):
             for l in self.layers:
@@ -349,8 +347,6 @@ class Network(torch.nn.Module):
                         # Get input to this layer (one-step mode).
                         inpts.update(self._get_inputs(layers=[l]))
                     self.layers[l].forward(x=inpts[l])
-                    # if hasattr(self.layers[l], 's'):
-                    #     avg_spikes[l] += self.layers[l].s.sum()
 
                 # Clamp neurons to spike.
                 clamp = clamps.get(l, None)
@@ -376,9 +372,6 @@ class Network(torch.nn.Module):
                     else:
                         self.layers[l].v += inject_v[t]
 
-                # if self.layers['21'].s.sum() > 0:
-                #     print(self.layers['21'].s.sum())
-
             # Run synapse updates.
             for c in self.connections:
                 self.connections[c].update(
@@ -392,8 +385,6 @@ class Network(torch.nn.Module):
             for m in self.monitors:
                 self.monitors[m].record()
             output_voltages = self.layers['44'].summed
-            # spikes_accuracy += self.layers['21'].s.int().cpu()
-            # prediction = spikes_accuracy.argmax(dim=1)
             prediction = torch.softmax(output_voltages, dim=1).argmax(dim=1)
             # print(output_voltages)
             for i, p in enumerate(prediction):

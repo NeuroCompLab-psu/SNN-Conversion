@@ -79,28 +79,7 @@ class FeatureExtractor(nn.Module):
             x = x.cuda()
             x = module(x)
             activations[name] = x
-        # for _, mod in modules:
-        #     if isinstance(mod, nn.DataParallel):
-        #         mod = mod._modules['module']
-        #     if isinstance(mod, nn.Sequential):
-        #         mod = mod._modules.items()
-        #     if isinstance(mod, nn.ReLU) or isinstance(mod, nn.Conv2d)\
-        #         or isinstance(mod, nn.Dropout) or isinstance(mod, nn.Linear)\
-        #         or isinstance(mod, nn.AvgPool2d):
-        #         if isinstance(mod, nn.Linear):
-        #             x = x.view(-1, mod.in_features)
-        #         mod = mod.cuda()
-        #         x = x.cuda()
-        #         x = mod(x)
-        #         activations[_] = x
-        #     else:
-        #         for name, module in mod:
-        #             if isinstance(module, nn.Linear):
-        #                 x = x.view(-1, module.in_features)
-        #             module = module.cuda()
-        #             x = x.cuda()
-        #             x = module(x)
-        #             activations[name] = x
+
 
         return activations
 
@@ -605,7 +584,6 @@ def data_based_normalization(
                     scale_factor = np.percentile(activities, percentile)
 
                     prev_module.weight *= prev_factor / scale_factor
-                    # prev_module.bias /= scale_factor
                     scale.append(prev_factor / scale_factor)
                     prev_factor = scale_factor
 
@@ -654,23 +632,7 @@ def _ann_to_snn_helper(prev, current, node_type, nxt, last=False, **kwargs):
         height = (
             input_width - current.kernel_size[1] + 2 * current.padding[1]
         ) / current.stride[1] + 1
-        # shape = (prev.shape[0] if prev.shape==(3,227,227) else prev.shape[1], out_channels, int(width), int(height))
 
-        # shape = (out_channels, int(width), int(height))
-        # layer = node_type(
-        #     shape=shape, reset=0, thresh=1, refrac=0, sum_input=last, **kwargs
-        # )
-        # bias = current.bias if current.bias is not None else torch.zeros(layer.shape[0])
-        # connection = topology.Conv2dConnection(
-        #     source=prev,
-        #     target=layer,
-        #     kernel_size=current.kernel_size,
-        #     stride=current.stride,
-        #     padding=current.padding,
-        #     dilation=current.dilation,
-        #     w=current.weight,
-        #     b=bias,
-        # )
         if isinstance(nxt, nn.ReLU):
             shape = (out_channels, int(width), int(height))
             layer = node_type(
@@ -715,13 +677,7 @@ def _ann_to_snn_helper(prev, current, node_type, nxt, last=False, **kwargs):
             input_width - current.kernel_size[1] + 2 * current.padding[1]
         ) / current.stride[1] + 1
         shape = (prev.shape[0], int(width), int(height))
-        # if isinstance(nxt, nn.ReLU):
-        #     layer = node_type(
-        #         shape=shape, reset=0, thresh=1, refrac=0, sum_input=last, **kwargs
-        #     )
-        # else:
-        #     layer = PassThroughNodes(shape=shape)
-        # layer = PassThroughNodes(shape=shape)
+
         layer = node_type(
             shape=shape, reset=0, thresh=1, refrac=0, sum_input=last, **kwargs
         )
@@ -746,12 +702,11 @@ def _ann_to_snn_helper(prev, current, node_type, nxt, last=False, **kwargs):
         height = (
             input_width - current.kernel_size[1] + 2 * current.padding[1]
         ) / current.stride[1] + 1
-        # shape = (prev.shape[0], prev.shape[1], int(width), int(height))
+
         shape = (prev.shape[0], int(width), int(height))
         layer = node_type(
             shape=shape, reset=0, thresh=1, refrac=0, sum_input=last, **kwargs
         )
-        # layer = PassThroughNodes(shape=shape)
         connection = topology.AvgPool2dConnection(
             source=prev,
             target=layer,

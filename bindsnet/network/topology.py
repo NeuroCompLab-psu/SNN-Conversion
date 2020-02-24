@@ -432,18 +432,6 @@ class MaxPool2dConnection(AbstractConnection):
         :param s: Incoming spikes.
         :return: Incoming spikes multiplied by synaptic weights (with or without decaying spike activation).
         """
-        # self.firing_rates -= self.decay * self.firing_rates
-        # self.firing_rates += s.float()
-
-        # maxpool =  F.max_pool2d(
-        #     s.float(),
-        #     kernel_size=self.kernel_size,
-        #     stride=self.stride,
-        #     padding=self.padding,
-        #     dilation=self.dilation,
-        #     return_indices=True,
-        # )
-        # return maxpool[0].cuda().float()
 
         _, indices = F.max_pool2d(
             s.float(),
@@ -526,9 +514,7 @@ class AvgPool2dConnection(AbstractConnection):
         :param s: Incoming spikes.
         :return: Incoming spikes multiplied by synaptic weights (with or without decaying spike activation).
         """
-        # self.firing_rates -= self.decay * self.firing_rates
-        # self.firing_rates += s.float()
-        # _, indices = F.avg_pool2d(
+
         return F.avg_pool2d(
             s.float(),
             kernel_size=self.kernel_size,
