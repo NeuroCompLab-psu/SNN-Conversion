@@ -28,7 +28,7 @@ We explored various network structures under SNN conversion constraints and has 
 | CIFAR-100 Full Precision | 256 | 200 |  5e-2, divide by 10 at 81 and 122 epoch | 1e-4 | SGD (momentum=0.9) |
 | CIFAR-100 Binary | 256 | 200 | 5e-4, halved every 30 epochs | 5e-4 (0 after 30 epochs) | Adam |
 | ImageNet Full Precision| 128 | 100 |  1e-2, divide by 10 every 30 epochs | 1e-4 | SGD (momentum=0.9) |
-| ImageNet Binary | 128 | 40 |  5e-4, halved every 30 epochs | 5e-4 (0 after 30 epochs) | Adam(**beta=(0.0,0.999)**) |
+| ImageNet Binary | 128 | 100 |  5e-4, halved every 30 epochs | 5e-4 (0 after 30 epochs) | Adam(**beta=(0.0,0.999)**) |
 
 Note that these hyper-parameters may be further optimized.
 
