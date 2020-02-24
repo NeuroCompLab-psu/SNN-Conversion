@@ -35,10 +35,10 @@ Note that these hyper-parameters may be further optimized.
 ## Evaluating Pre-trained models
 We provide pre-trained models of the VGG architecture mentioned in the paper and described above, available for download. Note that the first and the last layer are not binarized for our binarized models. The corresponding top-1 accuracies are indicated in parentheses.
 
-* [CIFAR-100 Full Precision ANN (64.9%)](https://dl.fbaipublicfiles.com/deepcluster/alexnet/checkpoint.pth.tar)
-* [CIFAR-100 Binary ANN (64.8%)](https://dl.fbaipublicfiles.com/deepcluster/alexnet/checkpoint.pth.tar)
-* [ImageNet Full Precision ANN (69.05%)](https://dl.fbaipublicfiles.com/deepcluster/alexnet/checkpoint.pth.tar)
-* [ImageNet Binary ANN (64.4%)](https://dl.fbaipublicfiles.com/deepcluster/alexnet/checkpoint.pth.tar)
+* [CIFAR-100 Full Precision ANN (64.9%)](https://drive.google.com/open?id=1ZmagwfBdWVVztCdn67gmAWtfQJY3yrev)
+* [CIFAR-100 Binary ANN (64.8%)](https://drive.google.com/open?id=1605x2i_noKiQ-Z4OZW9L__deR_ubvfGS)
+* [ImageNet Full Precision ANN (69.05%)](https://drive.google.com/open?id=1SHXlvUrkPAkl8nQ8_LCNja5ypkqh59_x)
+* [ImageNet Binary ANN (64.4%)](https://drive.google.com/open?id=12WeIAfrVNxD45NFv4HV1nSvrLa3rRZp_)
 
 The Full Precision ANNs are trained using standard [PyTorch training practices](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html) and the binarization process utilizes part of the [XNOR-Net-Pytorch](https://github.com/jiecaoyu/XNOR-Net-PyTorch) script which is the python implementation of the original [XNOR-Net](https://github.com/allenai/XNOR-Net) script.
 
