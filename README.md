@@ -23,9 +23,9 @@ We explored various network architectures constrained by ANN-SNN conversion. The
 ### Hyperparameter Settings
 | Model | Batch Size | Epoch | Learning Rate | Weight Decay | Optimizer |
 | ---- | ---- | ---- | ---- | ---- | ---- |
-| CIFAR-100 Full Precision | 256 | 200 |  5e-2, divide by 10 at 81 and 122 epoch | 1e-4 | SGD (momentum=0.9) |
+| CIFAR-100 Full Precision | 256 | 200 |  5e-2, divided by 10 at 81 and 122 epoch | 1e-4 | SGD (momentum=0.9) |
 | CIFAR-100 Binary | 256 | 200 | 5e-4, halved every 30 epochs | 5e-4 (0 after 30 epochs) | Adam |
-| ImageNet Full Precision| 128 | 100 |  1e-2, divide by 10 every 30 epochs | 1e-4 | SGD (momentum=0.9) |
+| ImageNet Full Precision| 128 | 100 |  1e-2, divided by 10 every 30 epochs | 1e-4 | SGD (momentum=0.9) |
 | ImageNet Binary | 128 | 100 |  5e-4, halved every 30 epochs | 5e-4 (0 after 30 epochs) | Adam(**beta=(0.0,0.999)**) |
 
 Note that these hyper-parameters may be further optimized.
@@ -82,13 +82,13 @@ optional arguments:
                         evaluate all)
   --dataset DATASET     cifar100 or imagenet
 ```
-Depending on your computing resources, some settings can be changed to speed up or to accommodate the available device. ```--norm```,```--batch-size```, and ```--time``` can be changed for better performance.
+Depending on your computing resources, some settings can be changed to speed up or to accommodate the available device. ```--norm```, ```--batch-size```, and ```--time``` can be changed for better performance.
 
 ## Reference
 
 If you use this code, please cite the following paper:
 
-Sen Lu and Abhronil Sengupta. "Exploring the Connection Between Binary and Spiking Neural Networks" ArXiv (2020).
+Sen Lu and Abhronil Sengupta. "Exploring the Connection Between Binary and Spiking Neural Networks" arXiv (2020).
 
 ```
 @Article{lu2020exploring,
