@@ -90,11 +90,11 @@ Depending on your computing resources, some settings can be changed to speed up 
 
 If you use this code, please cite the following paper:
 
-Mathilde Caron, Piotr Bojanowski, Armand Joulin, and Matthijs Douze. "Deep Clustering for Unsupervised Learning of Visual Features." Proc. ECCV (2018).
+Sen Lu and Abhronil Sengupta. "Exploring the Connection Between Binary and Spiking Neural Networks" Proc. ECCV (2020).
 
 ```
 @InProceedings{caron2018deep,
-  title={Deep Clustering for Unsupervised Learning of Visual Features},
+  title={Exploring the Connection Between Binary and Spiking Neural Networks},
   author={Caron, Mathilde and Bojanowski, Piotr and Joulin, Armand and Douze, Matthijs},
   booktitle={European Conference on Computer Vision},
   year={2018},
