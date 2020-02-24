@@ -1,15 +1,13 @@
-# Exploring the Connection Between Binary and Spiking Neural Networks (SNN)
+# Exploring the Connection Between Binary and Spiking Neural Networks
 
 ## Overview
 <!--
-outlines the training methodology adn traind model for FP and binary sNN(bsnn) utilizing [BindsNet](https://github.com/BindsNET/bindsnet) for large-scale datasets, namely CIFAR-100 and ImageNet
+outlines the training methodology and provides traind models for FP and binary sNN(bsnn) utilizing [BindsNet](https://github.com/BindsNET/bindsnet) for large-scale datasets, namely CIFAR-100 and ImageNet
 we showed that bsnn exhibits near FP
 We show that trainingSpiking Neural Networks in the binary regime results in near full precision accuracies.
 we use ann to snn conver technique for training and explore a novel set of optimization for generating high acc and low latency snn 
 -->
-This codebase outlines a training methodology and trained models for Binary Spiking Neural Network (BSNN) utilizing [BindsNet](https://github.com/BindsNET/bindsnet) for large-scale datasets, namely CIFAR-100 and ImageNet. Following the proposed procedures and design features mentioned in [our work](https://ismyinternetworking.com/), we have shown that the BSNN exhibits near full-precision accuracy which is significantly better than the [XNOR-Net](https://github.com/allenai/XNOR-Net) even with many SNN-specific constraints. Additionally, we used the ANN-SNN conversion techniques for training and explored a novel set of optimization for generating high accuracy and low latency SNN.
-
-The optimization techniques also apply to the full precision ANN to SNN conversion.
+This codebase outlines a training methodology and provides trained models for Full Precision and Binary Spiking Neural Networks (B-SNNs) utilizing [BindsNet](https://github.com/BindsNET/bindsnet) for large-scale datasets, namely CIFAR-100 and ImageNet. Following the proposed procedures and design features mentioned in [our work](https://ismyinternetworking.com/), we have shown that B-SNNs exhibit near full-precision accuracy even with many SNN-specific constraints. Additionally, we used ANN-SNN conversion technique for training and explored a novel set of optimizations for generating high accuracy and low latency SNNs. The optimization techniques also apply to the full precision ANN-SNN conversion.
 
 ## Requirements
 
@@ -20,20 +18,20 @@ The optimization techniques also apply to the full precision ANN to SNN conversi
 - The ImageNet dataset (which can be automatically downloaded by a recent version of [torchvision](https://pytorch.org/docs/stable/torchvision/datasets.html#imagenet)) (If needed)
 
 ## Training from scratch
-We explored various network structures under SNN conversion constraints and has derived a final network structure that can be found in ```vgg.py```. Further details can be found in the paper.
+We explored various network architectures constrained by ANN-SNN conversion. The finalized network structure can be found in ```vgg.py```. Further details can be found in the paper.
 
 ### Hyperparameter Settings
 | Model | Batch Size | Epoch | Learning Rate | Weight Decay | Optimizer |
 | ---- | ---- | ---- | ---- | ---- | ---- |
-| CIFAR-100 Full Precision | 256 | 200 |  5e-2, divide by 10 at 81 and 122 epoch | 1e-4 | SGD (momentum=0.9) |
+| CIFAR-100 Full Precision | 256 | 200 |  5e-2, divided by 10 at 81 and 122 epoch | 1e-4 | SGD (momentum=0.9) |
 | CIFAR-100 Binary | 256 | 200 | 5e-4, halved every 30 epochs | 5e-4 (0 after 30 epochs) | Adam |
-| ImageNet Full Precision| 128 | 100 |  1e-2, divide by 10 every 30 epochs | 1e-4 | SGD (momentum=0.9) |
+| ImageNet Full Precision| 128 | 100 |  1e-2, divided by 10 every 30 epochs | 1e-4 | SGD (momentum=0.9) |
 | ImageNet Binary | 128 | 100 |  5e-4, halved every 30 epochs | 5e-4 (0 after 30 epochs) | Adam(**beta=(0.0,0.999)**) |
 
 Note that these hyper-parameters may be further optimized.
 
 ## Evaluating Pre-trained models
-We provide pre-trained models of the VGG architecture mentioned in the paper and described above, available for download. Note that the first and the last layer are not binarized for our binarized models. The corresponding top-1 accuracies are indicated in parentheses.
+We provide pre-trained models of the VGG architecture mentioned in the paper and described above, available for download. Note that the first and the last layers are not binarized for our models. The corresponding top-1 accuracies are indicated in parentheses.
 
 * [CIFAR-100 Full Precision ANN (64.9%)](https://drive.google.com/open?id=1ZmagwfBdWVVztCdn67gmAWtfQJY3yrev)
 * [CIFAR-100 Binary ANN (64.8%)](https://drive.google.com/open?id=1605x2i_noKiQ-Z4OZW9L__deR_ubvfGS)
@@ -84,19 +82,19 @@ optional arguments:
                         evaluate all)
   --dataset DATASET     cifar100 or imagenet
 ```
-Depending on your computing resources, some settings can be changed to speed up or to accommodate available device. ```--norm```,```--batch-size```, and ```--time``` can be changed for better performance, or tuned down to fit in GPU with smaller memory.
+Depending on your computing resources, some settings can be changed to speed up or to accommodate the available device. ```--norm```, ```--batch-size```, and ```--time``` can be changed for better performance.
 
 ## Reference
 
 If you use this code, please cite the following paper:
 
-Sen Lu and Abhronil Sengupta. "Exploring the Connection Between Binary and Spiking Neural Networks" Proc. ECCV (2020).
+Sen Lu and Abhronil Sengupta. "Exploring the Connection Between Binary and Spiking Neural Networks" arXiv (2020).
 
 ```
-@InProceedings{caron2018deep,
+@Article{lu2020exploring,
   title={Exploring the Connection Between Binary and Spiking Neural Networks},
-  author={Caron, Mathilde and Bojanowski, Piotr and Joulin, Armand and Douze, Matthijs},
-  booktitle={European Conference on Computer Vision},
-  year={2018},
+  author={Lu, Sen and Sengupta, Abhronil},
+  journal={arXiv preprint arXiv:},
+  year={2020},
 }
 ```
