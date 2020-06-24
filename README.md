@@ -91,10 +91,24 @@ If you use this code, please cite the following paper:
 Sen Lu and Abhronil Sengupta. "Exploring the Connection Between Binary and Spiking Neural Networks" arXiv (2020).
 
 ```
-@Article{lu2020exploring,
-  title={Exploring the Connection Between Binary and Spiking Neural Networks},
-  author={Lu, Sen and Sengupta, Abhronil},
-  journal={arXiv preprint arXiv:2002.10064},
-  year={2020},
+@ARTICLE{10.3389/fnins.2020.00535,
+  
+AUTHOR={Lu, Sen and Sengupta, Abhronil},   
+	 
+TITLE={Exploring the Connection Between Binary and Spiking Neural Networks},      
+	
+JOURNAL={Frontiers in Neuroscience},      
+	
+VOLUME={14},      
+
+PAGES={535},     
+	
+YEAR={2020},      
+	  
+URL={https://www.frontiersin.org/article/10.3389/fnins.2020.00535},       
+	
+DOI={10.3389/fnins.2020.00535},      
+	
+ISSN={1662-453X}
 }
 ```
