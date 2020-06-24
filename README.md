@@ -88,7 +88,7 @@ Depending on your computing resources, some settings can be changed to speed up 
 
 If you use this code, please cite the following paper:
 
-Sen Lu and Abhronil Sengupta. "Exploring the Connection Between Binary and Spiking Neural Networks" arXiv (2020).
+Sen Lu and Abhronil Sengupta. "Exploring the Connection Between Binary and Spiking Neural Networks", Frontiers in Neuroscience, Vol. 14, pp. 535 (2020).
 
 ```
 @ARTICLE{10.3389/fnins.2020.00535,
