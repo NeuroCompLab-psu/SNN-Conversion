@@ -92,23 +92,14 @@ Sen Lu and Abhronil Sengupta. "Exploring the Connection Between Binary and Spiki
 
 ```
 @ARTICLE{10.3389/fnins.2020.00535,
-  
-AUTHOR={Lu, Sen and Sengupta, Abhronil},   
-	 
-TITLE={Exploring the Connection Between Binary and Spiking Neural Networks},      
-	
+AUTHOR={Lu, Sen and Sengupta, Abhronil},    
+TITLE={Exploring the Connection Between Binary and Spiking Neural Networks},      	
 JOURNAL={Frontiers in Neuroscience},      
-	
 VOLUME={14},      
-
 PAGES={535},     
-	
-YEAR={2020},      
-	  
+YEAR={2020},       
 URL={https://www.frontiersin.org/article/10.3389/fnins.2020.00535},       
-	
 DOI={10.3389/fnins.2020.00535},      
-	
 ISSN={1662-453X}
 }
 ```
