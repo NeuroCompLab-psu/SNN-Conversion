@@ -7,7 +7,7 @@ we showed that bsnn exhibits near FP
 We show that trainingSpiking Neural Networks in the binary regime results in near full precision accuracies.
 we use ann to snn conver technique for training and explore a novel set of optimization for generating high acc and low latency snn 
 -->
-This codebase outlines a training methodology and provides trained models for Full Precision and Binary Spiking Neural Networks (B-SNNs) utilizing [BindsNet](https://github.com/BindsNET/bindsnet) for large-scale datasets, namely CIFAR-100 and ImageNet. Following the proposed procedures and design features mentioned in [our work](http://arxiv.org/abs/2002.10064), we have shown that B-SNNs exhibit near full-precision accuracy even with many SNN-specific constraints. Additionally, we used ANN-SNN conversion technique for training and explored a novel set of optimizations for generating high accuracy and low latency SNNs. The optimization techniques also apply to the full precision ANN-SNN conversion.
+This codebase outlines a training methodology and provides trained models for Full Precision and Binary Spiking Neural Networks (B-SNNs) utilizing [BindsNet](https://github.com/BindsNET/bindsnet) for large-scale datasets, namely CIFAR-100 and ImageNet. Following the proposed procedures and design features mentioned in [our work](https://www.frontiersin.org/article/10.3389/fnins.2020.00535), we have shown that B-SNNs exhibit near full-precision accuracy even with many SNN-specific constraints. Additionally, we used ANN-SNN conversion technique for training and explored a novel set of optimizations for generating high accuracy and low latency SNNs. The optimization techniques also apply to the full precision ANN-SNN conversion.
 
 ## Requirements
 
