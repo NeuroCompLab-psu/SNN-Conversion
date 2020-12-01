@@ -44,7 +44,7 @@ The Full Precision ANNs are trained using standard [PyTorch training practices](
 
 Prepare the pre-trained model and move to the same directory, and run the following code for each model:
 
-```python main.py --job-dir cifar100_test --gpu --dataset cifar100 --data . --percentile 99.9 --norm 3500 --arch vgg15ab --model bin_cifar100.pth.tar```
+```python conversion.py --job-dir cifar100_test --gpu --dataset cifar100 --data . --percentile 99.9 --norm 3500 --arch vgg15ab --model bin_cifar100.pth.tar```
 
 Full documentation of the arguments in `conversion.py`:
 ```
