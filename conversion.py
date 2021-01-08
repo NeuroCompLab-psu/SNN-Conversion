@@ -128,7 +128,7 @@ def main(args):
         raise ValueError('Unsupported dataset.')
 
     if args.eval_size == -1:
-        args.eval_size = len(dataloader)
+        args.eval_size = len(val_loader)
 
     for step, batch in enumerate(torch.utils.data.DataLoader(norm_loader, batch_size=args.norm)):
         data = batch['image']
