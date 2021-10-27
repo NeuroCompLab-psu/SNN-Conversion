@@ -154,7 +154,8 @@ def main(args):
             inpts = {k: v.cuda() for k, v in inpts.items()}
 
         snn.run(inpts=inpts, time=args.time, step=step, acc= accuracies, labels=labels,one_step=args.one_step)
-        output_voltages = snn.layers['44'].summed
+        last_layer = list(snn.layers.keys())[-1]
+        output_voltages = snn.layers[last_layer].summed
         prediction = torch.softmax(output_voltages, dim=1).argmax(dim=1)
         correct += (prediction.cpu() == labels).sum().item()
         snn.reset_()
