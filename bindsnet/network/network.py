@@ -384,7 +384,8 @@ class Network(torch.nn.Module):
             # Record state variables of interest.
             for m in self.monitors:
                 self.monitors[m].record()
-            output_voltages = self.layers['44'].summed
+            last_layer = list(self.layers.keys())[-1]
+            output_voltages = self.layers[last_layer].summed
             prediction = torch.softmax(output_voltages, dim=1).argmax(dim=1)
             # print(output_voltages)
             for i, p in enumerate(prediction):
